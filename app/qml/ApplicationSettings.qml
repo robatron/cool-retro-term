@@ -404,6 +404,13 @@ Item{
             else
                 console.log("Warning: selected profile is not valid; ignoring it");
         }
+
+        // Run the application in low-graphics mode.
+        // Useful on very slow hardware where the user can set enable very few effects.
+        if (args.indexOf("--low-graphics")  !== -1) {
+            loadSettingsString('{"bloom_quality":0.25,"fontIndexes":[0,0,0],"fontScaling":1,"fps":30,"frameReflections":false,"scanline_quality":4,"showMenubar":true,"show_terminal_size":true,"window_scaling":1}')
+            loadProfileString('{"ambient_light":0,"background_color":"#000000","bloom_strength":0,"brightness":0.5,"brightness_flickering":0,"chroma_color":0,"contrast":0.85,"fontIndex":0,"fontWidth":1,"font_color":"#ff8100","frames_index":0,"glowing_line_strength":0,"horizontal_sincronization":0,"jitter":0,"motion_blur":0,"noise_strength":0,"rasterization":0,"rgb_shift":0,"saturation_color":0,"screen_distortion":0,"windowOpacity":1}');
+        }
     }
     Component.onDestruction: {
         storeSettings();

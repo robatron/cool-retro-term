@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
         qDebug() << "    --default-settings  Run cool-old-term with the default settings";
         qDebug() << "    --workdir <dir>     Change working directory to 'dir'";
         qDebug() << "    --program <prog>    Run the 'prog' in the new terminal.";
+        qDebug() << "    --low-graphics      Run with all the effects disabled (Useful for debugging).";
         qDebug() << "    -p|--profile        Run cool-old-term with the given profile.";
         qDebug() << "    -h|--help           Print this help.";
         return 0;
