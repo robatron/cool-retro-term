@@ -65,5 +65,7 @@
         <file>Storage.qml</file>
         <file>CRTMainMenuBar.qml</file>
         <file>SettingsPerformanceTab.qml</file>
+        <file>frames/utils/StaticFrameShader.qml</file>
+        <file>frames/utils/ReflectingFrameShader.qml</file>
     </qresource>
 </RCC>
