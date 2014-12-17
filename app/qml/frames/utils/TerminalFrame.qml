@@ -21,8 +21,6 @@ Item{
     property real displacementRight
     property real displacementBottom
 
-    property real distortionCoefficient
-
     BorderImage{
         id: frameimage
         anchors.centerIn: parent

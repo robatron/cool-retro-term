@@ -4,7 +4,10 @@ import QtGraphicalEffects 1.0
 ShaderEffect{
     property variant source: framesource
     property variant normals: framesourcenormals
-    property real screen_distorsion: appSettings.screen_distortion * framecontainer.distortionCoefficient
+
+    property real screen_distorsion: appSettings.screen_distortion
+    property size curvature_coefficients: Qt.size(width / mainShader.width, height / mainShader.height)
+
     property real ambient_light: appSettings.ambient_light
     property color font_color: appSettings.font_color
     property color background_color: appSettings.background_color
@@ -49,7 +52,9 @@ ShaderEffect{
                             uniform highp float screen_distorsion;
                             uniform highp float ambient_light;
                             uniform highp float qt_Opacity;
-                            uniform lowp float chroma_color;" +
+                            uniform lowp float chroma_color;
+
+                            uniform highp vec2 curvature_coefficients;" +
 
                             (frameReflections ?
                                 "uniform sampler2D lightSource;" : "") + "
@@ -61,7 +66,7 @@ ShaderEffect{
                             varying highp vec2 qt_TexCoord0;
 
                             vec2 distortCoordinates(vec2 coords){
-                                vec2 cc = coords - vec2(0.5);
+                                vec2 cc = (coords - vec2(0.5)) * curvature_coefficients;
                                 float dist = dot(cc, cc) * screen_distorsion;
                                 return (coords + cc * (1.0 + dist) * dist);
                             }
