@@ -34,19 +34,15 @@ Tab{
                     id: profilesbox
                     Layout.fillWidth: true
                     model: appSettings.profiles_list
-                    currentIndex: appSettings.profiles_index
+
+                    onActivated: {
+                        appSettings.loadProfile(index);
+                        appSettings.handleFontChanged();
+                    }
+                    Component.onCompleted: currentIndex = appSettings.profiles_index
                 }
                 RowLayout{
                     Layout.fillWidth: true
-                    Button{
-                        Layout.fillWidth: true
-                        text: qsTr("Load")
-                        onClicked: {
-                            appSettings.profiles_index = profilesbox.currentIndex
-                            appSettings.loadCurrentProfile();
-                            appSettings.handleFontChanged();
-                        }
-                    }
                     Button{
                         Layout.fillWidth: true
                         text: qsTr("Save New Profile")
@@ -94,16 +90,19 @@ Tab{
         GroupBox{
             title: qsTr("Frame")
             Layout.fillWidth: true
-            RowLayout{
+            ComboBox{
+                id: framescombobox
                 anchors.fill: parent
-                ComboBox{
-                    id: framescombobox
-                    Layout.fillWidth: true
-                    model: appSettings.frames_list
-                    currentIndex: appSettings.frames_index
-                    onCurrentIndexChanged: appSettings.frames_index = currentIndex
+                model: appSettings.frames_list
+                onActivated: appSettings.frames_index = index;
+                Component.onCompleted: currentIndex = appSettings.frames_index;
+                Connections {
+                    target: appSettings
+                    onFrames_indexChanged:
+                        framescombobox.currentIndex = appSettings.frames_index;
                 }
             }
         }
     }
 }
+

@@ -3,8 +3,7 @@ import "utils"
 
 TerminalFrame{
     id: frame
-    z: 2.1
-    anchors.fill: parent
+
     addedWidth: 200
     addedHeight: 370
     borderLeft: 170

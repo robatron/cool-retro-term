@@ -76,6 +76,10 @@ Item{
 
     property int rasterization: no_rasterization
 
+    onRasterizationChanged: handleFontChanged();
+
+    // FRAMES /////////////////////////////////////////////////////////////////
+
     ListModel{
         id: framelist
         ListElement{text: "No frame"; source: "./frames/NoFrame.qml"; reflections: false}
@@ -85,7 +89,7 @@ Item{
 
     property string frame_source: frames_list.get(frames_index).source
     property int frames_index: 1
-    property var frames_list: framelist
+    property alias frames_list: framelist
 
 
     // FONTS //////////////////////////////////////////////////////////////////
@@ -121,7 +125,7 @@ Item{
             if (name === fontlist.get(i).name)
                 return i;
         }
-        return undefined;
+        return 0; // Returns the first element in case of error.
     }
 
     function incrementScaling(){

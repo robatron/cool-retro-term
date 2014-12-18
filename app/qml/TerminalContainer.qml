@@ -18,8 +18,15 @@ ShaderTerminal{
 
     Loader{
         id: frame
+        property real displacementTop: item ? item.displacementTop : 0.0
+        property real displacementBottom: item ? item.displacementBottom : 0.0
+        property real displacementLeft: item ? item.displacementLeft : 0.0
+        property real displacementRight: item ? item.displacementRight : 0.0
+
+        asynchronous: true
         anchors.fill: parent
         z: 2.1
+
         source: appSettings.frame_source
     }
 
